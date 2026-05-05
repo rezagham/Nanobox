@@ -6,263 +6,70 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue: #1a73e8;
-      --blue-dark: #1557b0;
-      --green: #34a853;
-      --red: #ea4335;
-      --bg: #f0f2f5;
-      --card-bg: #ffffff;
-      --text: #1c1e21;
-      --muted: #5f6368;
-      --border: #dadce0;
-      --shadow: 0 4px 24px rgba(0,0,0,0.09);
-      --radius: 18px;
+      --blue: #1a73e8; --blue-dark: #1557b0; --green: #34a853; --red: #ea4335;
+      --bg: #f0f2f5; --card-bg: #ffffff; --text: #1c1e21; --muted: #5f6368;
+      --border: #dadce0; --shadow: 0 4px 24px rgba(0,0,0,0.09); --radius: 18px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px 16px 40px;
-      color: var(--text);
-    }
-
-    /* ── HEADER ── */
-    .header {
-      width: 100%;
-      max-width: 920px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .header h1 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-      color: var(--blue);
-    }
-    .sync-status {
-      margin-left: auto;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #ccc;
-      transition: background 0.3s;
-    }
+    body { font-family: "DM Sans", sans-serif; background: var(--bg); min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; padding: 24px 16px 40px; color: var(--text); }
+    .header { width: 100%; max-width: 920px; display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .header h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.3px; color: var(--blue); }
+    .sync-status { margin-left: auto; font-size: 0.78rem; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; transition: background 0.3s; }
     .dot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
     .dot.saving { background: orange; animation: pulse 0.6s infinite alternate; }
     .dot.error { background: var(--red); }
     @keyframes pulse { from { opacity: 0.4; } to { opacity: 1; } }
-
-    /* ── TOOLBAR ── */
-    .toolbar {
-      background: var(--card-bg);
-      padding: 16px 20px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      max-width: 920px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .toolbar input[type="text"],
-    .toolbar select {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      background: #fff;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .toolbar { background: var(--card-bg); padding: 16px 20px; border-radius: var(--radius);
+      box-shadow: var(--shadow); margin-bottom: 20px; display: flex; gap: 10px;
+      width: 100%; max-width: 920px; align-items: center; flex-wrap: wrap; }
+    .toolbar input[type="text"], .toolbar select { padding: 10px 14px; border-radius: 10px;
+      border: 1.5px solid var(--border); font-family: "DM Sans", sans-serif; font-size: 0.85rem;
+      font-weight: 600; background: #fff; color: var(--text); outline: none; transition: border-color 0.2s; }
     .toolbar input[type="text"] { flex-grow: 1; min-width: 180px; }
-    .toolbar input[type="text"]:focus,
-    .toolbar select:focus { border-color: var(--blue); }
-    .btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.18s;
-      white-space: nowrap;
-    }
+    .toolbar input[type="text"]:focus, .toolbar select:focus { border-color: var(--blue); }
+    .btn { padding: 10px 20px; border: none; border-radius: 10px; font-family: "DM Sans", sans-serif;
+      font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
     .btn-primary { background: var(--blue); color: #fff; }
     .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
     .btn-dark { background: #202124; color: #fff; }
     .btn-dark:hover { background: #000; transform: translateY(-1px); }
-
-    /* ── COUNTER ── */
-    #counter {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    /* ── FLASHCARD ── */
-    .flashcard-wrap {
-      width: 100%;
-      max-width: 860px;
-      perspective: 1200px;
-      cursor: pointer;
-      margin-bottom: 24px;
-    }
-    .flashcard-inner {
-      position: relative;
-      width: 100%;
-      min-height: 460px;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-      box-shadow: var(--shadow);
-      border-radius: 24px;
-    }
+    #counter { font-family: "DM Mono", monospace; font-size: 0.85rem; color: var(--muted); font-weight: 500; margin-bottom: 16px; }
+    .flashcard-wrap { width: 100%; max-width: 860px; perspective: 1200px; cursor: pointer; margin-bottom: 24px; }
+    .flashcard-inner { position: relative; width: 100%; min-height: 460px;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); transform-style: preserve-3d;
+      box-shadow: var(--shadow); border-radius: 24px; }
     .flipped .flashcard-inner { transform: rotateY(180deg); }
-
-    .face {
-      position: absolute;
-      width: 100%;
-      min-height: 460px;
-      backface-visibility: hidden;
-      padding: 52px 56px;
-      border-radius: 24px;
-      display: flex;
-      flex-direction: column;
-    }
-    .front {
-      background: var(--card-bg);
-      border: 6px solid var(--blue);
-      justify-content: center;
-    }
-    .back {
-      background: var(--blue);
-      color: #fff;
-      transform: rotateY(180deg);
-    }
-
-    .face-meta {
-      position: absolute;
-      top: 22px; left: 28px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--blue);
-      font-family: 'DM Mono', monospace;
-    }
+    .face { position: absolute; width: 100%; min-height: 460px; backface-visibility: hidden;
+      padding: 52px 56px; border-radius: 24px; display: flex; flex-direction: column; }
+    .front { background: var(--card-bg); border: 6px solid var(--blue); justify-content: center; }
+    .back { background: var(--blue); color: #fff; transform: rotateY(180deg); }
+    .face-meta { position: absolute; top: 22px; left: 28px; font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.8px; color: var(--blue); font-family: "DM Mono", monospace; }
     .back .face-meta { color: rgba(255,255,255,0.7); }
-
-    .speaker-badge {
-      position: absolute;
-      top: 18px; right: 22px;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: #e8f0fe;
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 0.78rem;
-      cursor: pointer;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .edit-area {
-      outline: none;
-      border: 1.5px dashed transparent;
-      border-radius: 8px;
-      padding: 6px 8px;
-      line-height: 1.65;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .edit-area:focus {
-      border-color: rgba(26,115,232,0.3);
-      background: rgba(26,115,232,0.04);
-    }
-    .back .edit-area:focus {
-      border-color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.08);
-    }
-
+    .speaker-badge { position: absolute; top: 18px; right: 22px; padding: 6px 12px; border-radius: 8px;
+      background: #e8f0fe; color: var(--blue); font-weight: 700; font-size: 0.78rem;
+      cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
+    .edit-area { outline: none; border: 1.5px dashed transparent; border-radius: 8px;
+      padding: 6px 8px; line-height: 1.65; transition: border-color 0.2s, background 0.2s; }
+    .edit-area:focus { border-color: rgba(26,115,232,0.3); background: rgba(26,115,232,0.04); }
+    .back .edit-area:focus { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); }
     #q-text { font-size: 1.3rem; font-weight: 700; color: var(--text); }
     #a-text { font-size: 0.95rem; }
     #a-text ul { padding-left: 20px; }
     #a-text li { margin-bottom: 10px; line-height: 1.6; }
-
-    /* ── CONTROLS ── */
-    .controls {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* ── SAVE INDICATOR ── */
-    #save-msg {
-      margin-top: 14px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--muted);
-      height: 20px;
-      text-align: center;
-    }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
+    .controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    #save-msg { margin-top: 14px; font-size: 0.8rem; font-weight: 600; color: var(--muted); height: 20px; text-align: center; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.open { display: flex; }
-    .modal {
-      background: #fff;
-      border-radius: 20px;
-      padding: 32px;
-      width: 440px;
-      max-width: 95vw;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-    }
+    .modal { background: #fff; border-radius: 20px; padding: 32px; width: 440px; max-width: 95vw;
+      display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.18); }
     .modal h3 { font-size: 1.1rem; font-weight: 800; }
     .modal label { font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .modal select,
-    .modal textarea {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-    }
+    .modal select, .modal textarea { width: 100%; padding: 10px 14px; border-radius: 10px;
+      border: 1.5px solid var(--border); font-family: "DM Sans", sans-serif; font-size: 0.9rem; outline: none; }
     .modal textarea { height: 90px; resize: vertical; }
     .modal-btns { display: flex; gap: 10px; margin-top: 6px; }
     .modal-btns .btn { flex: 1; padding: 12px; }
@@ -270,70 +77,30 @@
     .btn-green:hover { background: #2d9248; }
     .btn-red { background: var(--red); color: #fff; }
     .btn-red:hover { background: #c62828; }
-
-    /* ── SETUP SCREEN ── */
-    #setup-screen {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 20px;
-      color: #fff;
-      padding: 30px;
-    }
+    #setup-screen { position: fixed; inset: 0; background: linear-gradient(135deg,#1a73e8 0%,#0d47a1 100%);
+      z-index: 999; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 20px; color: #fff; padding: 30px; }
     #setup-screen h2 { font-size: 1.6rem; font-weight: 800; text-align: center; }
     #setup-screen p { font-size: 0.9rem; opacity: 0.85; text-align: center; max-width: 500px; line-height: 1.6; }
-    .setup-box {
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 16px;
-      padding: 28px;
-      width: 100%;
-      max-width: 520px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .setup-box { background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 16px; padding: 28px; width: 100%; max-width: 520px;
+      display: flex; flex-direction: column; gap: 14px; }
     .setup-box label { font-size: 0.8rem; font-weight: 700; opacity: 0.8; letter-spacing: 0.5px; }
-    .setup-box input {
-      width: 100%;
-      padding: 11px 14px;
-      border-radius: 10px;
-      border: none;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      outline: none;
-    }
+    .setup-box input { width: 100%; padding: 11px 14px; border-radius: 10px; border: none;
+      font-family: "DM Mono", monospace; font-size: 0.82rem; background: rgba(255,255,255,0.15); color: #fff; outline: none; }
     .setup-box input::placeholder { color: rgba(255,255,255,0.45); }
     .setup-box input:focus { background: rgba(255,255,255,0.22); }
-    #connect-btn {
-      background: #fff;
-      color: var(--blue);
-      padding: 13px;
-      border: none;
-      border-radius: 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: transform 0.15s;
-    }
+    #connect-btn { background: #fff; color: var(--blue); padding: 13px; border: none;
+      border-radius: 12px; font-family: "DM Sans", sans-serif; font-weight: 800;
+      font-size: 0.95rem; cursor: pointer; transition: transform 0.15s; }
     #connect-btn:hover { transform: translateY(-2px); }
     #setup-error { color: #ffcdd2; font-size: 0.82rem; font-weight: 600; text-align: center; display: none; }
   </style>
 </head>
 <body>
-
-<!-- ── FIREBASE SETUP SCREEN (shown only first time) ── -->
 <div id="setup-screen">
   <h2>🔥 Connect to Firebase</h2>
-  <p>One-time setup. Paste your Firebase project config below. After connecting, this screen never appears again for your team.</p>
+  <p>One-time setup. Your team only needs to do this once per browser.</p>
   <div class="setup-box">
     <label>API KEY</label>
     <input id="cfg-apiKey" placeholder="AIzaSy...">
@@ -342,12 +109,11 @@
     <label>APP ID</label>
     <input id="cfg-appId" placeholder="1:123456789:web:abcdef">
     <button id="connect-btn" onclick="connectFirebase()">Connect & Save →</button>
-    <div id="setup-error">❌ Could not connect. Check your credentials.</div>
+    <div id="setup-error"></div>
   </div>
-  <p style="font-size:0.78rem; opacity:0.6;">Firebase → Project Settings → Your Apps → Web App → Config</p>
+  <p style="font-size:0.78rem;opacity:0.6;">Firebase → Project Settings → Your Apps → Web App → Config</p>
 </div>
 
-<!-- ── MAIN APP ── -->
 <div class="header">
   <h1>🌿 NanobOx Interview Master</h1>
   <div class="sync-status">
@@ -389,13 +155,12 @@
 </div>
 
 <div class="controls">
-  <button class="btn btn-dark" onclick="event.stopPropagation(); prev()">← PREVIOUS</button>
-  <button class="btn btn-dark" onclick="event.stopPropagation(); next()">NEXT →</button>
-  <button class="btn btn-primary" onclick="addNewCard()">+ QUICK ADD</button>
+  <button class="btn btn-dark" onclick="event.stopPropagation();prev()">← PREVIOUS</button>
+  <button class="btn btn-dark" onclick="event.stopPropagation();next()">NEXT →</button>
+  <button class="btn btn-primary" onclick="showModal()">+ ADD CARD</button>
 </div>
 <div id="save-msg"></div>
 
-<!-- ── MODAL ── -->
 <div class="modal-overlay" id="addModal">
   <div class="modal">
     <h3>Add New Question</h3>
@@ -416,217 +181,160 @@
   </div>
 </div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, doc, onSnapshot, setDoc, addDoc, query, orderBy }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ── STATE ──
+const SEED = [{"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What is the greatest challenge your company is currently facing?", "a": ["Scaling from TRL6 to TRL8 while maintaining consistent performance across crops and climates.", "Bridging pilot success to repeatable commercial deployments with standardised units.", "Securing manufacturing capacity without increasing unit cost or complexity."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What is your long-term vision for the company?", "a": ["Become the global standard for oxygen-enhanced irrigation systems.", "Enable climate-resilient agriculture with lower inputs and higher yields.", "Deploy at scale across both controlled and open-field farming."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "How will your company shape or transform the market?", "a": ["Shift irrigation from passive delivery to active performance enhancement.", "Reduce dependency on fertilisers and chemical treatments.", "Enable data-driven optimisation of root-zone conditions."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "Why is this the right time to bring your solution to market?", "a": ["Rising fertiliser and energy costs create immediate ROI demand.", "Climate stress (heat/drought) is already reducing yields globally.", "Existing solutions are too costly or complex to scale widely."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What is the history of your company and technology development?", "a": ["Originated from electrostriction research at UCD.", "Validated through lab testing followed by multi-crop field trials.", "Now transitioning from prototype to scalable product platform."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What is your company's mission?", "a": ["Improve crop productivity while reducing resource inputs.", "Provide farmers with simple, reliable, plug-and-play technology.", "Drive sustainable agriculture without adding operational complexity."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What key challenges or failures have you experienced in your entrepreneurial journey?", "a": ["Early prototypes lacked scalability and reliability in field conditions.", "Initial trials showed variability across crops requiring optimisation.", "Learned to focus on simplicity and robustness over technical complexity."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "What is your planned exit strategy?", "a": ["Target acquisition by major irrigation, ag-tech, or input companies.", "Build strategic partnerships to position for integration into existing systems.", "Achieve strong revenue growth to enable high-value exit within 5-7 years."]}, {"cat": "category_1_company_strategy", "speaker": "John (CEO)", "q": "Why is your company classified as deep-tech?", "a": ["Based on novel physics (electrostriction-driven nanobubble generation).", "Requires interdisciplinary integration (fluid dynamics, electrostatics, agronomy).", "Protected by IP and difficult to replicate without deep technical expertise."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "How big is the market?", "a": ["~€17B TAM in European irrigated horticulture, with global expansion potential.", "~€1B SAM in controlled environment agriculture (CEA).", "Initial €200M SOM focused on high-value crops with fast ROI."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "Is this a growing market?", "a": ["Driven by water scarcity, fertiliser cost increases, and climate stress.", "CEA and greenhouse sectors growing >10% annually.", "Regulatory pressure to reduce inputs accelerates adoption."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "What evidence do you have of demand?", "a": ["Multiple field trials with commercial growers across crops.", "Demonstrated ROI via fertiliser reduction and yield increase.", "Interest from large growers and pilot partners."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "What is your target market segment?", "a": ["High-value crops: leafy greens, berries, tomatoes.", "Controlled environments first (vertical farms, greenhouses).", "Later expansion to open-field irrigation."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "Who are your customers?", "a": ["Commercial growers seeking yield and cost optimisation.", "Greenhouse operators and vertical farming companies.", "Agri-tech integrators and irrigation system providers."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "How will you reach customers?", "a": ["Direct sales to early adopters in CEA.", "Partnerships with irrigation system integrators.", "Demonstration trials as conversion tools."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "What is your go-to-market strategy?", "a": ["Start with pilots -> convert to paid deployments.", "Leverage ROI-driven adoption rather than regulation.", "Scale through distribution and integration partners."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "What is your first target market?", "a": ["Controlled Environment Agriculture (CEA).", "Greenhouses with high input costs and fast cycles.", "Segments where ROI can be proven within one season."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "Why did you choose this market?", "a": ["Fastest adoption cycle and measurable ROI.", "Customers are already technology-driven.", "Lower barriers compared to open-field agriculture."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "Are customers ready for your solution?", "a": ["Yes-cost pressure makes ROI-driven solutions attractive.", "Farmers actively seeking input reduction solutions.", "Low integration complexity removes adoption barriers."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "What are the risks in market entry?", "a": ["Conservative adoption behaviour of farmers.", "Need for proof across multiple crops and regions.", "Competition from established players."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "How will you mitigate them?", "a": ["Demonstration trials with clear ROI evidence.", "Focus on plug-and-play integration.", "Partnering with trusted industry players."]}, {"cat": "category_2_market", "speaker": "John (CEO)", "q": "How will you scale in the market?", "a": ["Expand from CEA -> greenhouses -> open-field agriculture.", "Scale manufacturing to reduce unit cost.", "Build distribution partnerships for global reach."]}, {"cat": "category_3_usp", "speaker": "John (CEO)", "q": "What are your key differentiators?", "a": ["Only nanobubble system using electrostriction (no compressors, no membranes).", "~100x lower energy consumption (<1W/m3/h) than conventional systems.", "Delivers both higher performance and lower cost-removes trade-off."]}, {"cat": "category_3_usp", "speaker": "John (CEO)", "q": "Why would customers choose your solution over alternatives?", "a": ["ROI within one growing cycle due to fertiliser savings (30-50%).", "Plug-and-play integration with existing irrigation-no infrastructure change.", "Lower maintenance due to no moving parts or consumables."]}, {"cat": "category_3_usp", "speaker": "John (CEO)", "q": "What is your core value proposition?", "a": ["Increases yield (up to ~15-40%) while reducing inputs.", "Reduces fertiliser dependency without compromising crop quality.", "Improves resilience under heat and water stress conditions."]}, {"cat": "category_3_usp", "speaker": "John (CEO)", "q": "What makes your solution unique compared to competitors?", "a": ["Competitors rely on gas injection or cavitation-energy intensive and complex.", "Our system uses ambient air and electric field physics.", "Achieves higher nanobubble concentration at lower operating cost."]}, {"cat": "category_3_usp", "speaker": "John (CEO)", "q": "What is special about your technology that delivers value?", "a": ["Stable nanobubbles (10^8-10^9 nb/mL) improving oxygen availability.", "Enhances root-zone biology and nutrient transport mechanisms.", "Scalable design enabling deployment from small farms to large systems."]}, {"cat": "category_4_clients_lois", "speaker": "John (CEO)", "q": "Who are your current clients or users?", "a": ["Pilot users include commercial growers in controlled environment agriculture (leafy greens, tomatoes).", "Engagements with vertical farming operators and greenhouse producers.", "Early-stage collaboration with irrigation and ag-tech partners."]}, {"cat": "category_4_clients_lois", "speaker": "John (CEO)", "q": "Do you have Letters of Intent (LOIs) or commitments from customers?", "a": ["LOIs and pilot agreements with selected growers to validate performance in real conditions.", "Commitments linked to successful trial outcomes and ROI validation.", "Pipeline of prospective customers awaiting trial results before scaling."]}, {"cat": "category_4_clients_lois", "speaker": "John (CEO)", "q": "What concrete evidence supports customer interest in your solution?", "a": ["Field trials demonstrating yield gains and fertiliser reduction under real farm conditions.", "Repeat trials requested by growers after initial pilot success.", "Inbound interest driven by cost pressures and sustainability targets."]}, {"cat": "category_4_clients_lois", "speaker": "John (CEO)", "q": "Why would clients adopt your solution in practice?", "a": ["Adoption driven by clear ROI within one growing cycle.", "Plug-and-play integration avoids operational disruption.", "Addresses immediate pain points: fertiliser cost, yield variability, climate stress."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What does your current cap table look like?", "a": ["Founders retain a controlling stake to ensure strategic alignment and speed of execution.", "Equity allocated to early investors and IP holders, with a clean structure for future rounds.", "Cap table designed to accommodate ESOP and future institutional investors without dilution shock."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "Who are your current investors and what strategic value do they bring?", "a": ["Current investors include early-stage backers aligned with deep-tech and agri-tech scaling.", "IP originating from UCD provides strong technical foundation and credibility.", "Investors contribute network access, technical validation, and follow-on funding potential."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "Do the founders retain majority ownership, and how is control structured?", "a": ["Founders maintain majority ownership and decision-making control.", "Governance structured to allow fast execution while incorporating investor oversight.", "Board composition balanced between founders and strategic advisors."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "Do you have an ESOP, and how is it designed to attract talent?", "a": ["ESOP pool established (~10-15%) to attract key hires in engineering and commercial roles.", "Used to secure talent in competitive deep-tech and agri-tech markets.", "Aligned with long-term value creation and retention."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What is your current valuation and how is it justified?", "a": ["Valuation based on TRL6 validation, demonstrated ROI in trials, and scalable IP.", "Benchmarked against comparable agri-tech and climate-tech startups.", "Justified by cost-performance breakthrough and large addressable market."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What is your overall funding strategy for the next 24-36 months?", "a": ["Raise staged funding aligned with TRL progression (TRL6 -> TRL8 -> TRL9).", "Combine EIC funding with private equity to de-risk scaling phase.", "Target follow-on round after commercial validation and initial revenues."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What is the status of your fundraising (including committed and targeted amounts)?", "a": ["Partial funding secured from existing investors and grant applications.", "Targeting €1M co-investment and additional €4M equity over next phase.", "Active discussions with investors contingent on trial validation milestones."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What are your investment milestones and triggers for the next round?", "a": ["Milestones include TRL8 demonstration, multi-site validation, and first commercial deployments.", "Revenue generation and unit economics validation trigger next round.", "Scalable manufacturing readiness as key investment inflection point."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "Who is expected to lead the next funding round?", "a": ["Expected lead from climate-tech or agri-tech focused VC funds.", "Strategic investors (irrigation/agri companies) as potential co-leads.", "Positioned to attract investors after de-risking technology and market adoption."]}, {"cat": "category_5_cap_table_investment", "speaker": "John (CEO)", "q": "What is your plan B if funding is delayed or partially secured?", "a": ["Prioritise revenue-generating pilots to extend runway.", "Adjust scaling speed while maintaining core development milestones.", "Seek alternative funding sources (grants, strategic partnerships)."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "What are the key work packages in your project?", "a": ["WP1: System optimisation and scale-up of nanobubble generation unit.", "WP2: Multi-site field trials across crops and environments.", "WP3: Product engineering and manufacturability design.", "WP4: Commercial validation and market deployment preparation."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "What are the objectives of each work package?", "a": ["WP1 focuses on improving efficiency, stability, and scalability of the core technology.", "WP2 validates agronomic performance across real-world conditions.", "WP3 ensures cost-effective, scalable product design.", "WP4 builds market readiness and customer validation."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "What are the key deliverables for each work package?", "a": ["Validated prototype ready for TRL8 deployment.", "Field trial reports with quantified yield and input reductions.", "Manufacturing-ready product design and BOM.", "Initial commercial contracts or deployment agreements."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "What are the KPIs used to measure success in each work package?", "a": ["Yield increase (%), fertiliser reduction (%), and energy consumption (<1W/m3/h).", "System reliability and uptime during trials.", "Cost per unit and scalability metrics.", "Conversion rate from trials to commercial adoption."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "How are the work packages interconnected?", "a": ["WP1 feeds optimised technology into WP2 trials.", "WP2 generates validation data for WP3 product refinement.", "WP3 enables scaling for WP4 commercialisation.", "WP4 provides feedback loop for continuous improvement."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "How will you ensure timely delivery of each work package?", "a": ["Defined milestones and timelines with monthly tracking.", "Regular technical and management reviews.", "Dedicated leads for each WP with accountability.", "Contingency buffers built into timelines."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "Who is responsible for each work package?", "a": ["Technical lead (Mohammed) for WP1 and WP3.", "Agronomy/validation lead (Jennifer) for WP2.", "Business/strategy lead (John) for WP4.", "Cross-functional coordination across all WPs."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "What risks are associated with each work package?", "a": ["Technical risk: performance variability across environments.", "Operational risk: delays in field trials or partner availability.", "Manufacturing risk: scaling without cost increase.", "Commercial risk: slower-than-expected adoption."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "How will you mitigate risks across work packages?", "a": ["Parallel testing across multiple sites to reduce dependency risk.", "Iterative design improvements based on trial feedback.", "Multiple supplier strategy for manufacturing.", "Early customer engagement to validate demand."]}, {"cat": "category_6_WPs", "speaker": "John (CEO)", "q": "How do the work packages support TRL progression?", "a": ["WP1 establishes TRL6->TRL7 (validated prototype).", "WP2 drives TRL7->TRL8 through real-world demonstration.", "WP3 ensures readiness for TRL9 manufacturing.", "WP4 supports full commercial deployment (TRL9)."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "Can you explain your overall project budget?", "a": ["Budget aligned with TRL progression: optimisation, trials, productisation, and commercialisation.", "Major spend allocated to field trials, engineering, and manufacturing scale-up.", "Designed to deliver TRL8 readiness within the project timeframe."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "How is the budget allocated across work packages?", "a": ["WP1 (technology optimisation): ~20% focused on R&D and prototyping.", "WP2 (field trials): ~30% covering multi-site validation and data collection.", "WP3-WP4 (productisation & commercial): ~50% for engineering, manufacturing, and market entry."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "What are the main cost drivers in your project?", "a": ["Field trials and partner deployments across multiple sites.", "Engineering and product development for scalable manufacturing.", "Personnel costs for specialised technical and commercial teams."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "How do you ensure the budget is realistic and justified?", "a": ["Benchmarked against similar deep-tech and agri-tech projects.", "Validated through supplier quotes and internal cost modelling.", "Includes buffers for uncertainties in trials and scaling."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "What is your burn rate and how does this funding extend your runway?", "a": ["Current burn rate aligned with R&D and pilot deployment stage.", "EIC funding extends runway to reach TRL8 and initial revenues.", "Post-project funding supported by follow-on investment and early sales."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "How will you allocate EIC funding (grant vs equity)?", "a": ["Grant portion used for high-risk R&D and validation activities.", "Equity portion supports scaling, hiring, and market deployment.", "Balanced to de-risk technology while enabling commercial growth."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "What contingency measures are included in your budget?", "a": ["10-15% contingency built into key cost categories.", "Alternative suppliers identified for critical components.", "Flexible allocation between WPs based on progress."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "How do you control costs during project execution?", "a": ["Monthly financial tracking and milestone-based spending.", "Clear ownership of budget per work package.", "Regular reviews to adjust allocation based on performance."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "What are your unit economics at scale?", "a": ["Target cost reduction through manufacturing scale and design optimisation.", "Low operating cost due to <1W/m3/h energy consumption and no consumables.", "Strong margins enabled by high-value crop applications."]}, {"cat": "category_7_budget", "speaker": "John (CEO)", "q": "How will your cost structure evolve as you scale?", "a": ["Unit costs decrease with volume manufacturing and supply chain optimisation.", "Operational costs remain low due to minimal maintenance requirements.", "Scalable model supports expansion without proportional cost increase."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What is unique about your technology?", "a": ["Uses electrostriction-based nanobubble generation instead of mechanical or gas injection systems.", "No moving parts, no membranes, and no external gas supply required.", "Achieves significantly higher efficiency with lower operational complexity."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "Why is your technology considered deep-tech?", "a": ["Based on novel physics (electric-field-induced nanobubble formation).", "Requires integration of electrostatics, fluid dynamics, and agronomy.", "Protected by IP and not easily replicated without deep technical expertise."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What are the key disruptive elements of your solution?", "a": ["Reduces energy consumption by ~100x compared to conventional systems.", "Eliminates dependency on pure oxygen or compressed gas infrastructure.", "Enables scalable deployment beyond high-tech farms."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What are the core innovative features of your technology?", "a": ["Generates high-density nanobubbles (10^8-10^9 nb/mL) using ambient air.", "Maintains stability of nanobubbles in water for extended periods.", "Enhances oxygen delivery directly at the root zone."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What is the scientific principle behind your solution?", "a": ["Electrostriction creates nanocavities in water under electric fields.", "These cavities trap gas molecules and form stable nanobubbles.", "Nanobubbles increase oxygen availability and reactivity in the root zone."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "How do you validate the performance of your technology?", "a": ["Validated through controlled lab experiments and field trials.", "Measured using dissolved oxygen, yield, and nutrient uptake metrics.", "Benchmarking against existing nanobubble systems."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What is your biggest technical challenge?", "a": ["Ensuring consistent performance across different crops and environments.", "Scaling production without increasing system complexity.", "Maintaining efficiency under varying water qualities."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "How have you addressed technical problems so far?", "a": ["Iterative design improvements based on field feedback.", "Testing across multiple crops and environments.", "Refining system parameters to stabilise performance."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "How confident are you that your technology will scale?", "a": ["Strong confidence based on TRL6 validation in real-world conditions.", "Scalable design with modular architecture.", "Manufacturing simplification reduces scale-up risk."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "How does your system operate in practice?", "a": ["Installed inline with existing irrigation systems.", "Operates continuously with minimal user intervention.", "Requires only electrical input and standard water flow."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What are the manufacturing challenges of your technology?", "a": ["Scaling production while maintaining precision of components.", "Ensuring cost-effective manufacturing at volume.", "Managing supply chain for specialised materials."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "How are you developing and protecting your proprietary technology?", "a": ["Core IP around electrostriction-based nanobubble generation.", "Combination of patents and know-how protects system design.", "Continuous development to extend IP portfolio."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "What is the platform potential of your technology?", "a": ["Applicable across multiple crops and irrigation systems.", "Potential extension to water treatment and aquaculture.", "Scalable across geographies and farming systems."]}, {"cat": "category_8_technology", "speaker": "Mohammad (CTO)", "q": "Why did you choose this technological approach over alternatives?", "a": ["Alternative methods are energy-intensive and complex.", "Electrostriction enables simpler, more efficient design.", "Provides best balance between performance and scalability."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What is your overall intellectual property (IP) strategy?", "a": ["Core protection built around electrostriction-based nanobubble generation.", "Combination of patents, trade secrets, and system-level know-how.", "Strategy focused on protecting both method and implementation."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What patents have you filed or been granted?", "a": ["Patent filings covering electrostriction mechanism and device configuration.", "Protection extends to system integration within irrigation setups.", "Ongoing filings to expand scope as technology evolves."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "How do you ensure freedom to operate (FTO)?", "a": ["FTO analysis conducted against existing nanobubble and aeration technologies.", "Distinct physical mechanism (electrostriction) avoids overlap with cavitation/membrane systems.", "Continuous monitoring of IP landscape to mitigate infringement risk."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What trademarks are associated with your product or company?", "a": ["Brand identity established under NanobOx name.", "Trademark strategy supports market recognition and differentiation.", "Ensures protection of brand in key target markets."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What licensing agreements are currently in place?", "a": ["IP originating from UCD licensed exclusively to the company.", "Agreements ensure full commercial rights for deployment and scaling.", "Clear ownership structure avoids future legal ambiguity."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What proprietary know-how or trade secrets do you rely on?", "a": ["Device tuning parameters and system optimisation algorithms.", "Manufacturing processes and component configurations.", "Operational know-how from field trials and deployment."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "How difficult is it for competitors to replicate your technology?", "a": ["Requires deep understanding of electrostatics and fluid dynamics integration.", "Not easily reverse-engineered due to system-level complexity.", "Competitors would need both IP access and experimental validation capability."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What is your plan for future IP development?", "a": ["Expand patent portfolio to cover new applications and improvements.", "File in key markets (EU, US, global agriculture regions).", "Protect incremental innovations arising from field deployment."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "How do you manage IP across different jurisdictions?", "a": ["Prioritised filing in EU and US for core protection.", "Plan to extend to key agricultural markets globally.", "Use of international patent frameworks (PCT)."]}, {"cat": "category_9_IP", "speaker": "Mohammad (CTO)", "q": "What is the competitive IP landscape in your field?", "a": ["Most competitors focus on mechanical or gas-injection methods.", "Limited overlap due to different physical principles.", "Opportunity to dominate niche of low-energy nanobubble generation."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "Why is your solution considered a breakthrough rather than an incremental improvement?", "a": ["Changes the underlying physics of bubble generation from mechanical to electrostatic (electrostriction).", "Delivers both higher performance and lower cost simultaneously, removing traditional trade-offs.", "Enables deployment beyond niche high-tech farms into mainstream agriculture."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "How does your technology fundamentally differ from current state-of-the-art nanobubble systems?", "a": ["Conventional systems rely on cavitation or gas injection; ours uses electric-field-induced nanocavity formation.", "Eliminates compressors, membranes, and external oxygen supply.", "Produces stable nanobubbles at higher concentrations with lower energy input."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "What specific limitations of existing solutions does your technology overcome?", "a": ["Reduces energy consumption by ~100x compared to typical systems (~100W -> <1W/m3/h).", "Avoids fouling and maintenance issues associated with membranes and moving parts.", "Removes dependency on pure oxygen logistics and infrastructure."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "Why have existing competitors not achieved the same performance improvements?", "a": ["Incumbents are locked into legacy mechanical architectures and supply chains.", "Electrostriction requires different expertise (electrostatics + fluid dynamics integration).", "High R&D barrier and need for cross-disciplinary optimisation delayed similar breakthroughs."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "How does your cost-performance ratio compare to state-of-the-art systems?", "a": ["Lower CAPEX due to simpler hardware and no gas supply requirements.", "Lower OPEX due to minimal energy use and maintenance.", "Delivers faster ROI (often within a single growing season)."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "What evidence demonstrates that your solution delivers step-change improvements?", "a": ["Field trials show up to ~15-40% yield increase and ~30-50% fertiliser reduction.", "Measured improvements in dissolved oxygen and root-zone performance.", "Consistent results across multiple crops and environments at TRL6."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "How does your approach change the scalability of nanobubble technology?", "a": ["Modular, solid-state design enables easy scaling without proportional cost increase.", "No need for complex infrastructure allows deployment in open-field agriculture.", "Supports distributed installation across irrigation networks."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "What makes your solution difficult for incumbents to replicate quickly?", "a": ["Core physics and system integration are protected by IP and know-how.", "Performance depends on precise tuning not easily inferred from external observation.", "Requires validation across agronomy + engineering domains."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "Does low energy consumption alone define your breakthrough, or what combination of factors does?", "a": ["Breakthrough comes from combination: physics shift + 100x energy reduction + cost drop.", "Also includes simplicity (no moving parts) and ease of integration.", "Together these unlock adoption at scale, not just efficiency gains."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "How do you benchmark your technology against leading competitors such as Moleaer?", "a": ["Benchmarking includes energy use, nanobubble concentration, and agronomic outcomes.", "Outperforms in energy efficiency and operational simplicity.", "Comparable or better biological outcomes at significantly lower cost."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "What would prevent a large company from developing a similar solution?", "a": ["Requires deep understanding of electrostriction and system integration.", "Existing players would need to redesign core architecture, not just iterate.", "Time-to-market advantage combined with IP protection creates barrier."]}, {"cat": "category_10_breakthrough", "speaker": "Mohammad (CTO)", "q": "How does your innovation enable new applications that were previously not feasible?", "a": ["Makes nanobubbles viable for low-margin crops and open-field farming.", "Enables integration into standard irrigation without redesign.", "Opens applications in water treatment and aquaculture due to low cost."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "Who are your field trial partners?", "a": ["Commercial growers in controlled environment agriculture (CEA) and greenhouse sectors.", "Pilot partners across multiple crops including leafy greens and tomatoes.", "Engagement with ag-tech and irrigation system collaborators."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What roles do your field trial partners play in the project?", "a": ["Provide real-world environments for validation and performance testing.", "Support installation, operation, and monitoring of systems.", "Offer feedback on usability and operational integration."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What types of environments are your trials conducted in?", "a": ["Trials conducted in vertical farms, greenhouses, and outdoor test sites.", "Coverage across different climates and irrigation systems.", "Includes both high-tech and mid-tech agricultural environments."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "How do your partners support validation of your technology?", "a": ["Partners supply crop performance data under real operational conditions.", "Enable comparison against baseline irrigation systems.", "Provide credibility through independent validation context."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What level of commitment do your partners have?", "a": ["Partners engaged through pilot agreements and trial commitments.", "Some partners progressing toward repeat trials and scaling discussions.", "Interest driven by clear ROI potential demonstrated in early results."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "How do you ensure reliability and consistency across trial sites?", "a": ["Standardised protocols for installation and monitoring.", "Parallel trials across sites to validate consistency.", "Central data collection and analysis framework."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What data do you collect from field trials?", "a": ["Yield data, growth rates, and biomass measurements.", "Fertiliser usage and water consumption metrics.", "Dissolved oxygen and system performance indicators."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "How do you manage coordination across multiple trial locations?", "a": ["Dedicated coordination led by project team.", "Regular check-ins and reporting from each site.", "Structured timelines and milestones for trials."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What risks are associated with relying on field partners?", "a": ["Dependence on partner availability and operational consistency.", "Variability in environmental conditions affecting results.", "Potential delays in trial execution."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "How do you mitigate risks related to field trials?", "a": ["Use multiple partners to reduce dependency risk.", "Standardise trial protocols across sites.", "Maintain backup sites and flexible scheduling."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "What have you learned from your field trial partnerships so far?", "a": ["Performance varies by crop and environment, requiring optimisation.", "Strong ROI cases in high-value crops drive adoption.", "Importance of simplicity and reliability for farmers."]}, {"cat": "category_11_field_trials", "speaker": "Mohammad (CTO)", "q": "How will field trial partnerships support commercialisation?", "a": ["Successful trials convert into commercial deployments.", "Partners act as reference customers for market expansion.", "Enable faster adoption through demonstrated results."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What are your current R&D priorities?", "a": ["Optimising nanobubble generation efficiency and stability across water qualities.", "Improving system robustness for different crops and irrigation conditions.", "Reducing unit cost through design simplification."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How does your R&D roadmap support technology maturation?", "a": ["Structured progression from TRL6 validation to TRL8 demonstration.", "Parallel work on performance, reliability, and manufacturability.", "Alignment of R&D milestones with field trial outcomes."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What key technical improvements are you targeting?", "a": ["Increase nanobubble concentration consistency across flow rates.", "Further reduce energy consumption and variability.", "Enhance durability and lifetime of components."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How do you de-risk your technology development?", "a": ["Multi-site trials reduce dependence on single conditions.", "Iterative prototyping with rapid testing cycles.", "Validation against baseline systems and competitor benchmarks."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What are your technical KPIs?", "a": ["Yield increase (%), fertiliser reduction (%), energy consumption (<1W/m3/h).", "System uptime and reliability under continuous operation.", "Consistency of performance across environments."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How do you integrate feedback from trials into R&D?", "a": ["Field data feeds into design optimisation cycles.", "Identifying crop-specific tuning parameters.", "Adjusting system parameters based on real-world feedback."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What resources are allocated to R&D?", "a": ["Dedicated engineering team and lab facilities.", "Budget allocated for prototyping, testing, and validation.", "Collaboration with research institutions."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How do you ensure continuous innovation?", "a": ["Continuous iteration based on field and lab results.", "Monitoring emerging technologies and competitor developments.", "Expanding IP portfolio alongside technical improvements."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What are the main uncertainties in your R&D?", "a": ["Variability across crops and environmental conditions.", "Scaling manufacturing without performance loss.", "Long-term durability under diverse conditions."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How do you manage iteration speed vs reliability?", "a": ["Balance rapid prototyping with validation cycles.", "Use modular design to test components independently.", "Maintain reliability benchmarks before scaling."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "What is your long-term R&D vision?", "a": ["Expand core technology into broader water treatment applications.", "Develop next-generation systems with enhanced capabilities.", "Strengthen position as platform technology."]}, {"cat": "category_12_RnD", "speaker": "Mohammad (CTO)", "q": "How will R&D support future product expansion?", "a": ["Enable new product lines for different farm sizes and applications.", "Adapt system for aquaculture and water treatment.", "Support global deployment with region-specific optimisation."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What regulatory requirements apply to your technology?", "a": ["Classified as irrigation equipment, not chemical input -> lower regulatory burden.", "No emissions or hazardous outputs simplifies environmental compliance.", "Falls within existing agricultural equipment frameworks."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What certifications or standards must your product meet?", "a": ["Compliance with CE marking and relevant electrical safety standards.", "Alignment with ISO standards for irrigation and water systems.", "Adherence to agricultural equipment certification requirements."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What is your regulatory strategy for entering EU markets?", "a": ["Focus on CE certification and safety compliance for rapid entry.", "Leverage existing irrigation regulatory frameworks.", "No need for chemical or pesticide approval pathways."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What is your regulatory strategy for entering US and global markets?", "a": ["Align with US agricultural equipment and water system standards.", "Ensure electrical and safety compliance under UL/ANSI frameworks.", "Adapt to local agricultural regulations in target regions."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What risks are associated with regulatory compliance?", "a": ["Minimal risk due to non-chemical, low-energy system.", "Potential delays in certification processes.", "Variability in regional compliance requirements."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "How do you ensure compliance with environmental regulations?", "a": ["Reduces fertiliser runoff and improves nutrient efficiency.", "No chemical additives introduced into the system.", "Supports sustainability and environmental compliance goals."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "Are there any safety concerns related to your technology?", "a": ["Low-risk system with no high-pressure gases or chemicals.", "Operates at low power levels (<1W/m3/h).", "Designed with standard electrical and water safety protections."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "How do you address water quality and agricultural compliance standards?", "a": ["Compatible with existing irrigation water standards.", "Does not alter water chemistry beyond oxygenation.", "Supports compliance with agricultural water use regulations."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What approvals are needed before full commercial deployment?", "a": ["Product safety certification (CE/UL equivalents).", "Compliance with irrigation equipment standards.", "No complex approvals required compared to agrochemicals."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "How does regulation impact your time-to-market?", "a": ["Fast compared to regulated inputs like fertilisers or pesticides.", "Certification timelines manageable within project scope.", "Enables quicker commercial deployment."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "What is your plan to manage regulatory changes over time?", "a": ["Monitor regulatory developments in key markets.", "Maintain flexible design to adapt to standards.", "Engage with regulatory bodies when scaling internationally."]}, {"cat": "category_13_regulation", "speaker": "Jennifer (CSO)", "q": "Do regulations create barriers or advantages for your solution?", "a": ["Creates advantage by avoiding heavy regulation of chemical inputs.", "Lower compliance burden accelerates adoption.", "Supports positioning as sustainable, low-risk technology."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What is your current Technology Readiness Level (TRL)?", "a": ["Currently at TRL6 with validation in relevant operational environments.", "System tested in real irrigation conditions across multiple sites.", "Moving toward TRL8 through expanded field demonstrations."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What evidence supports your current TRL?", "a": ["Field trials across crops including leafy greens and tomatoes.", "Measured improvements in yield, fertiliser use, and oxygen levels.", "Operational performance validated under real farm conditions."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What results have you achieved in trials so far?", "a": ["Yield increases up to ~15-40% depending on crop and conditions.", "Fertiliser reduction of ~30-50% without compromising quality.", "Improved growth rates and plant health observed consistently."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "Have your trials been independently validated?", "a": ["Validation conducted with commercial growers in real-world settings.", "Comparative trials against baseline irrigation systems.", "Partner-supported trials provide external credibility."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What is your plan to move from TRL6 to TRL8?", "a": ["Scale trials to multiple sites and diverse environments.", "Demonstrate repeatability across crops and conditions.", "Prepare system for commercial deployment (TRL8)."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What are the key performance indicators demonstrated in trials?", "a": ["Yield increase (%), fertiliser reduction (%), and growth rate improvements.", "Dissolved oxygen levels and system efficiency metrics.", "System reliability and uptime during continuous operation."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "How consistent are your results across different environments?", "a": ["Consistent positive trends across multiple trial sites.", "Variability exists but within expected agricultural ranges.", "Ongoing optimisation improves consistency further."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What crops and conditions have you tested your technology in?", "a": ["Tested in controlled environments (CEA, greenhouses).", "Trials in outdoor conditions for broader validation.", "Coverage across different irrigation systems and climates."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What are your most compelling trial results?", "a": ["High ROI demonstrated through input reduction and yield gain.", "Fast impact within a single growing cycle.", "Strong performance in high-value crops."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "How do your results compare with baseline systems?", "a": ["Outperforms baseline irrigation in oxygen delivery and crop response.", "Delivers similar or better results than competitor systems at lower cost.", "Provides both efficiency and cost advantages simultaneously."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "What uncertainties remain in your validation data?", "a": ["Variability across crops and environmental conditions.", "Long-term durability and lifecycle performance still under evaluation.", "Need for further validation at larger scale."]}, {"cat": "category_14_TRL_trials", "speaker": "Jennifer (CSO)", "q": "How will you validate performance at scale?", "a": ["Expand trials to commercial-scale deployments.", "Collect long-term performance data across seasons.", "Validate system reliability and economics at scale."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "Who are your main competitors?", "a": ["Key competitors include nanobubble providers such as Moleaer and similar systems.", "Indirect competitors include traditional aeration and oxygen injection systems.", "Also competing with 'do nothing' baseline irrigation practices."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "What is the current market position of your competitors?", "a": ["Competitors are established in niche high-tech agriculture markets.", "Strong presence in controlled environments but limited scalability.", "High cost and complexity restrict broader adoption."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "How do you differentiate from competitors?", "a": ["Electrostriction-based system vs mechanical/cavitation approaches.", "~100x lower energy consumption and no need for gas supply.", "Simpler, plug-and-play integration enabling wider deployment."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "What are the strengths and weaknesses of your competitors?", "a": ["Strength: proven presence and early market entry.", "Weakness: high energy use, maintenance, and infrastructure requirements.", "Limited adoption beyond high-margin farming segments."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "How do you defend against large, established companies?", "a": ["Lower cost structure creates pricing pressure for incumbents.", "Different technical architecture makes fast replication difficult.", "Speed of execution and early market entry provide advantage."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "What are your indirect competitors?", "a": ["Traditional aeration systems delivering dissolved oxygen.", "Alternative soil and fertiliser optimisation technologies.", "Other agronomic solutions addressing yield indirectly."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "What is the pricing strategy of your competitors?", "a": ["Competitor systems typically require higher CAPEX and OPEX.", "Pricing reflects complexity and infrastructure needs.", "Limits adoption to premium segments."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "How mature are competing technologies?", "a": ["Technologies are mature but constrained by cost-performance trade-offs.", "No major breakthroughs in core generation methods until now.", "Incremental improvements dominate the current landscape."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "Why has the industry not already solved this problem?", "a": ["Existing solutions prioritised performance over cost efficiency.", "Technical limitations of mechanical systems restricted scalability.", "Lack of cross-disciplinary innovation delayed breakthroughs."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "How will incumbents react to your solution?", "a": ["Likely initial dismissal followed by attempts to replicate.", "Large players may acquire or partner if disruption is validated.", "Competitive pressure may drive price reductions in the market."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "What barriers protect you from competition?", "a": ["IP protection and proprietary system design.", "Cost-performance advantage difficult to match quickly.", "Operational simplicity creates strong adoption advantage."]}, {"cat": "category_15_market_competition", "speaker": "Jennifer (CSO)", "q": "How do you maintain competitive advantage over time?", "a": ["Continuous improvement through R&D and field feedback.", "Expansion of IP portfolio and application areas.", "Building strong customer base and reference cases."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What is the biological mechanism behind your solution's impact on crops?", "a": ["Electrostriction generates stable nanobubbles that increase dissolved oxygen at the root zone.", "Elevated DO enhances root respiration (ATP), accelerating nutrient transport across membranes.", "Micro-scale bubbles improve mass transfer and can create mild ROS, reducing pathogen pressure."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How does increased oxygen availability affect root physiology?", "a": ["Higher DO alleviates hypoxia, sustaining aerobic respiration in roots.", "Improves ATP availability, supporting active nutrient uptake (ion transporters).", "Promotes root growth and branching, increasing absorptive surface area."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What evidence links nanobubbles to improved nutrient uptake?", "a": ["Trial data shows ~30-50% fertiliser reduction with maintained yield.", "Improved biomass and growth rates correlate with higher DO levels.", "Literature supports enhanced uptake under increased oxygenation conditions."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How do you measure agronomic performance improvements?", "a": ["KPIs: yield (%), biomass, growth rate, fertiliser use, and water use.", "Process metrics: dissolved oxygen (mg/L), flow rate, energy (W/m3/h).", "Comparative A/B trials against baseline irrigation systems."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "Which crops benefit the most and why?", "a": ["High-value crops (leafy greens, tomatoes, berries) show strongest ROI.", "CEA systems benefit most due to controlled conditions and rapid cycles.", "Root-sensitive crops respond strongly to oxygen availability."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How does your solution perform under heat and drought stress?", "a": ["Improves resilience by preventing root-zone hypoxia under heat stress.", "Maintains nutrient uptake under reduced irrigation scenarios.", "Supports stable yields during temperature and water variability."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What impact does your system have on soil health and microbiome?", "a": ["Enhanced oxygenation supports beneficial aerobic microbes.", "Potential reduction in anaerobic pathogens.", "No chemical additives-minimal disruption to soil ecology."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How does it affect water use efficiency and irrigation dynamics?", "a": ["Improves infiltration and root-zone oxygen distribution.", "Potential ~10% improvement in effective water use efficiency (context-dependent).", "Enables reduced irrigation volumes without yield loss."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What are the optimal operating conditions (flow, DO levels, duration)?", "a": ["Inline installation; tuned to target DO increases at root zone.", "Typical operation: continuous during irrigation cycles.", "Optimised per crop via flow rate and residence time adjustments."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "Are there any negative effects or edge cases where performance drops?", "a": ["Performance can vary with water quality (salinity, organics).", "Lower marginal gains in already highly oxygenated systems.", "Requires calibration to avoid over/under-treatment."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How do results vary between controlled environments and open-field conditions?", "a": ["CEA shows faster, more consistent gains due to controlled variables.", "Open-field shows variability but maintains positive trends.", "Multi-site trials used to characterise environment-dependent effects."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How do you ensure repeatability of agronomic results across sites?", "a": ["Standardised protocols for installation, dosing, and measurement.", "Parallel trials across sites with centralised data analysis.", "Calibration guidelines developed per crop and system."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What is the expected timeline for observing agronomic benefits?", "a": ["Observable effects within a single growth cycle (days to weeks).", "Full ROI typically within one season for high-value crops.", "Longer-term benefits accumulate over multiple cycles."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What agronomic KPIs do you track and report to customers?", "a": ["Yield (%), growth rate, fertiliser reduction (%), water use (L/kg).", "Quality metrics (size, uniformity), disease incidence.", "Operational KPIs: uptime, energy use, DO stability."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "How do you calibrate the system for different crops and growth stages?", "a": ["Parameter sets defined per crop (flow, DO target, duration).", "Adjusted across growth stages (seedling vs mature).", "Field feedback loops refine settings continuously."]}, {"cat": "category_16_crop_science_agronomy", "speaker": "Jennifer (CSO)", "q": "What long-term impacts (multi-season) do you expect or observe?", "a": ["Expected sustained yield gains and input reductions across seasons.", "Improved soil structure and microbiome balance over time.", "Durability and performance tracked for lifecycle optimisation."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Why hasn't this been done before?", "a": ["Existing systems focused on mechanical aeration rather than physics-level innovation.", "Electrostriction requires cross-disciplinary expertise not present in incumbents.", "Breakthrough emerged by shifting from energy-driven to field-driven generation."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is the biggest weakness in your solution?", "a": ["Performance variability across extreme water qualities and crop types.", "Requires calibration to optimise results in different environments.", "Currently being addressed through multi-site trials and tuning protocols."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Where does your technology not work or deliver limited benefit?", "a": ["Lower marginal benefit in already highly oxygenated systems.", "Performance depends on baseline conditions and crop sensitivity.", "ROI strongest in high-input, high-value agriculture."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Why won't competitors like Moleaer copy you quickly?", "a": ["Requires full redesign of core architecture, not incremental improvement.", "Electrostriction integration is non-trivial and protected by IP and know-how.", "Time-to-market advantage and validation gap slow replication."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is the single biggest risk that could make this fail?", "a": ["Scaling manufacturing while maintaining performance consistency.", "Ensuring repeatability across diverse real-world conditions.", "Mitigated through modular design and parallel validation."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Are your trial results independently validated?", "a": ["Validated with commercial growers in real operational environments.", "Comparative trials conducted against baseline systems.", "Further independent validation planned at TRL8."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is your worst trial result and how do you explain it?", "a": ["Some variability observed in open-field trials under extreme conditions.", "Attributed to environmental factors and irrigation variability.", "Addressed through optimisation and multi-site testing."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Why would a conservative farmer actually adopt your solution?", "a": ["Adoption driven by immediate cost pressure (fertiliser, energy).", "Plug-and-play system removes operational barriers.", "ROI within one growing cycle aligns with farmer decision cycles."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is the real economic trigger for adoption?", "a": ["Fertiliser cost reduction (~30-50%) is primary driver.", "Yield improvement provides additional upside.", "Fast payback period reduces perceived risk."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Is this truly a breakthrough or just optimisation?", "a": ["Fundamental shift in bubble generation physics.", "Simultaneous improvement in cost, energy, and performance.", "Enables applications not previously economically viable."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Why do you need EIC funding instead of private investment?", "a": ["Private investors require further de-risking at current TRL.", "EIC enables scaling from validation to commercial readiness.", "Combines technical and market risk mitigation."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What happens if you don't receive this funding?", "a": ["Slower scale-up and delayed commercial deployment.", "Reduced ability to validate across multiple markets.", "Potential loss of first-mover advantage."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What prevents a large company from building this internally?", "a": ["Requires expertise in electrostatics and fluid dynamics integration.", "Incumbents face inertia from existing business models.", "Development timeline gives us strategic lead."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How scalable is your solution in low-margin agriculture?", "a": ["Low energy and no consumables enable cost-effective scaling.", "Designed for both high-value and broader agriculture segments.", "Modular approach supports deployment at different scales."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What assumptions in your model are most uncertain?", "a": ["Variability in performance across environments.", "Adoption rate assumptions in conservative markets.", "Addressed through trials and staged market entry."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How sensitive is your ROI to changes in fertiliser prices?", "a": ["ROI improves as fertiliser prices increase.", "Still viable at lower prices due to yield benefits.", "Sensitivity analysis supports robustness."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How do you handle variability across crops and environments?", "a": ["Use crop-specific calibration protocols.", "Collect data across multiple environments.", "Continuously refine system parameters."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is the hardest technical problem you have not yet solved?", "a": ["Ensuring consistent nanobubble generation at scale.", "Maintaining performance across water qualities.", "Addressed through engineering optimisation."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How do you ensure your results are repeatable at scale?", "a": ["Standardised protocols and multi-site trials.", "Centralised data analysis ensures consistency.", "Iterative improvements based on results."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What would make your customers stop using your solution?", "a": ["If ROI is not clearly demonstrated.", "If system adds operational complexity.", "If results are inconsistent across cycles."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How do you respond to the claim that this is 'too good to be true'?", "a": ["Results are grounded in measurable trial data.", "Mechanism is scientifically explainable and validated.", "Independent trials reduce perception risk."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What evidence would convince a sceptical jury member?", "a": ["Independent multi-site validation with consistent results.", "Clear economic case with short payback period.", "Transparent reporting of both strengths and limitations."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is your weakest dataset?", "a": ["Limited data in extreme open-field conditions.", "Requires further validation across seasons.", "Currently being addressed in ongoing trials."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How long will it take competitors to catch up?", "a": ["Likely 2-4 years to replicate full system performance.", "Requires both technical development and validation.", "Our head start provides strong positioning."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "Why hasn't academia or industry already solved this?", "a": ["Focus has been on incremental improvements in existing systems.", "Cross-disciplinary innovation was missing.", "Cost-performance trade-off not previously solved."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What is your fallback if performance drops in certain conditions?", "a": ["Adjust system parameters or target specific crops.", "Focus on segments with strongest ROI.", "Continue optimisation through R&D."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What part of your system is most vulnerable to failure?", "a": ["Electronic control components and system calibration.", "Manufacturing precision at scale.", "Mitigated through robust design and supplier strategy."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "How do you defend your margins long-term?", "a": ["Maintain cost advantage through design simplicity.", "Expand IP portfolio and application areas.", "Build strong customer base and switching costs."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What would cause delays in your roadmap?", "a": ["Delays in trials or manufacturing scale-up.", "Supply chain disruptions.", "Mitigated through planning and redundancy."]}, {"cat": "category_17_tricky_F2F", "speaker": "John (CEO)", "q": "What are you most worried about right now as a founder?", "a": ["Execution risk in scaling from trials to market.", "Ensuring consistency across deployments.", "Maintaining speed while managing risk."]}];
+
 let db, allCards = [], filtered = [], idx = 0, autosaveTimer = null;
 
-// ── SEED DATA (used only on first-ever connection to populate Firestore) ──
-const SEED = [{"cat":"category_1_company_strategy","speaker":"John (CEO)","q":"What is the greatest challenge your company is currently facing?","a":["Scaling from TRL6 to TRL8 while maintaining consistent performance across crops and climates.","Bridging pilot success to repeatable commercial deployments with standardised units.","Securing manufacturing capacity without increasing unit cost or complexity."]},{"cat":"category_1_company_strategy","speaker":"John (CEO)","q":"What is your long-term vision for the company?","a":["Become the global standard for oxygen-enhanced irrigation systems.","Enable climate-resilient agriculture with lower inputs and higher yields.","Deploy at scale across both controlled and open-field farming."]},{"cat":"category_1_company_strategy","speaker":"John (CEO)","q":"How will your company shape or transform the market?","a":["Shift irrigation from passive delivery to active performance enhancement.","Reduce dependency on fertilisers and chemical treatments.","Enable data-driven optimisation of root-zone conditions."]},{"cat":"category_2_market","speaker":"John (CEO)","q":"How big is the market?","a":["~€17B TAM in European irrigated horticulture, with global expansion potential.","~€1B SAM in controlled environment agriculture (CEA).","Initial €200M SOM focused on high-value crops with fast ROI."]},{"cat":"category_2_market","speaker":"John (CEO)","q":"Who are your customers?","a":["Commercial growers seeking yield and cost optimisation.","Greenhouse operators and vertical farming companies.","Agri-tech integrators and irrigation system providers."]},{"cat":"category_3_usp","speaker":"John (CEO)","q":"What are your key differentiators?","a":["Only nanobubble system using electrostriction (no compressors, no membranes).","~100× lower energy consumption (<1W/m³/h) than conventional systems.","Delivers both higher performance and lower cost—removes trade-off."]},{"cat":"category_8_technology","speaker":"Mohammad (CTO)","q":"What is unique about your technology?","a":["Uses electrostriction-based nanobubble generation instead of mechanical or gas injection systems.","No moving parts, no membranes, and no external gas supply required.","Achieves significantly higher efficiency with lower operational complexity."]},{"cat":"category_8_technology","speaker":"Mohammad (CTO)","q":"What is the scientific principle behind your solution?","a":["Electrostriction creates nanocavities in water under electric fields.","These cavities trap gas molecules and form stable nanobubbles.","Nanobubbles increase oxygen availability and reactivity in the root zone."]},{"cat":"category_13_regulation","speaker":"Jennifer (CSO)","q":"What regulatory requirements apply to your technology?","a":["Classified as irrigation equipment, not chemical input → lower regulatory burden.","No emissions or hazardous outputs simplifies environmental compliance.","Falls within existing agricultural equipment frameworks."]},{"cat":"category_16_crop_science_agronomy","speaker":"Jennifer (CSO)","q":"What is the biological mechanism behind your solution's impact on crops?","a":["Electrostriction generates stable nanobubbles that increase dissolved oxygen at the root zone.","Elevated DO enhances root respiration (ATP), accelerating nutrient transport across membranes.","Micro-scale bubbles improve mass transfer and can create mild ROS, reducing pathogen pressure."]}];
-
-// ── CHECK STORED CONFIG ──
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   const cfg = loadConfig();
-  if (cfg) {
-    document.getElementById('setup-screen').style.display = 'none';
-    initApp(cfg);
-  }
+  if (cfg) { document.getElementById("setup-screen").style.display = "none"; initApp(cfg); }
 });
 
-// ── FIREBASE INIT ──
 window.connectFirebase = async function() {
   const cfg = {
-    apiKey: document.getElementById('cfg-apiKey').value.trim(),
-    projectId: document.getElementById('cfg-projectId').value.trim(),
-    appId: document.getElementById('cfg-appId').value.trim(),
+    apiKey: document.getElementById("cfg-apiKey").value.trim(),
+    projectId: document.getElementById("cfg-projectId").value.trim(),
+    appId: document.getElementById("cfg-appId").value.trim(),
   };
   if (!cfg.apiKey || !cfg.projectId || !cfg.appId) return showSetupError("Fill in all fields.");
   try {
     await initApp(cfg, true);
     saveConfig(cfg);
-    document.getElementById('setup-screen').style.display = 'none';
-  } catch(e) {
-    showSetupError("Connection failed: " + e.message);
-  }
+    document.getElementById("setup-screen").style.display = "none";
+  } catch(e) { showSetupError("Connection failed: " + e.message); }
 };
 
 function showSetupError(msg) {
-  const el = document.getElementById('setup-error');
-  el.style.display = 'block';
-  el.textContent = '❌ ' + msg;
+  const el = document.getElementById("setup-error");
+  el.style.display = "block"; el.textContent = "❌ " + msg;
 }
 
 async function initApp(cfg, isFirstTime = false) {
   const app = initializeApp({
     apiKey: cfg.apiKey,
-    authDomain: `${cfg.projectId}.firebaseapp.com`,
+    authDomain: cfg.projectId + ".firebaseapp.com",
     projectId: cfg.projectId,
     appId: cfg.appId,
   });
   db = getFirestore(app);
-
-  setSyncStatus('saving', 'Connecting…');
-
-  // Real-time listener
-  const q = query(collection(db, 'cards'), orderBy('createdAt'));
+  setSyncStatus("saving", "Connecting…");
+  const q = query(collection(db, "cards"), orderBy("createdAt"));
   onSnapshot(q, (snap) => {
-    if (snap.empty && isFirstTime) {
-      seedData();
-      return;
-    }
+    if (snap.empty && isFirstTime) { seedData(); return; }
     allCards = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    setupCategories();
-    applyFilters();
-    setSyncStatus('live', 'Live');
-  }, (err) => {
-    setSyncStatus('error', 'Error');
-    console.error(err);
-  });
+    setupCategories(); applyFilters(); setSyncStatus("live", "Live");
+  }, (err) => { setSyncStatus("error", "Error"); console.error(err); });
 }
 
 async function seedData() {
-  setSyncStatus('saving', 'Seeding data…');
+  setSyncStatus("saving", "Loading all cards…");
+  let t = Date.now();
   for (const card of SEED) {
-    await addDoc(collection(db, 'cards'), { ...card, createdAt: Date.now() });
+    await addDoc(collection(db, "cards"), { ...card, createdAt: t++ });
   }
 }
 
-// ── SYNC STATUS ──
 function setSyncStatus(state, label) {
-  const dot = document.getElementById('sync-dot');
-  dot.className = 'dot ' + state;
-  document.getElementById('sync-label').textContent = label;
+  document.getElementById("sync-dot").className = "dot " + state;
+  document.getElementById("sync-label").textContent = label;
 }
 
-// ── CATEGORIES ──
 function setupCategories() {
-  const catFilter = document.getElementById('catFilter');
-  const newCatDropdown = document.getElementById('newCatDropdown');
+  const catFilter = document.getElementById("catFilter");
+  const newCatDropdown = document.getElementById("newCatDropdown");
   const existing = [...catFilter.options].map(o => o.value);
-  const catSet = [...new Set(allCards.map(c => c.cat))];
-  catSet.forEach(cat => {
+  [...new Set(allCards.map(c => c.cat))].sort().forEach(cat => {
     if (!existing.includes(cat)) {
       [catFilter, newCatDropdown].forEach(sel => {
-        const opt = document.createElement('option');
-        opt.value = cat; opt.innerText = cat;
-        sel.appendChild(opt);
+        const opt = document.createElement("option");
+        opt.value = cat; opt.innerText = cat; sel.appendChild(opt);
       });
     }
   });
 }
 
-// ── FILTERS ──
 window.applyFilters = function() {
-  const catVal = document.getElementById('catFilter').value;
-  const speakerVal = document.getElementById('speakerFilter').value;
-  const searchVal = document.getElementById('searchTerm').value.toLowerCase();
+  const catVal = document.getElementById("catFilter").value;
+  const speakerVal = document.getElementById("speakerFilter").value;
+  const searchVal = document.getElementById("searchTerm").value.toLowerCase();
   filtered = allCards.filter(c =>
-    (catVal === 'all' || c.cat === catVal) &&
-    (speakerVal === 'all' || c.speaker === speakerVal) &&
-    (c.q || '').toLowerCase().includes(searchVal)
+    (catVal === "all" || c.cat === catVal) &&
+    (speakerVal === "all" || c.speaker === speakerVal) &&
+    (c.q || "").toLowerCase().includes(searchVal)
   );
-  idx = 0;
-  update();
+  idx = 0; update();
 };
 
-// ── RENDER CARD ──
 function update() {
   if (filtered.length === 0) {
-    document.getElementById('q-text').innerText = "No cards found.";
-    document.getElementById('a-text').innerHTML = "";
-    document.getElementById('counter').innerText = "0 / 0";
-    return;
+    document.getElementById("q-text").innerText = "No cards found.";
+    document.getElementById("a-text").innerHTML = "";
+    document.getElementById("counter").innerText = "0 / 0"; return;
   }
   const c = filtered[idx];
-  document.getElementById('card').classList.remove('flipped');
-  document.getElementById('f-cat').innerText = c.cat || '';
-  document.getElementById('b-cat').innerText = c.cat || '';
-  document.getElementById('speakerAssign').value = c.speaker || 'John (CEO)';
-  document.getElementById('q-text').innerText = c.q || '';
+  document.getElementById("card").classList.remove("flipped");
+  document.getElementById("f-cat").innerText = c.cat || "";
+  document.getElementById("b-cat").innerText = c.cat || "";
+  document.getElementById("speakerAssign").value = c.speaker || "John (CEO)";
+  document.getElementById("q-text").innerText = c.q || "";
   const bullets = Array.isArray(c.a) ? c.a : [];
-  document.getElementById('a-text').innerHTML =
-    "<ul>" + (bullets.length ? bullets.map(p => `<li>${p}</li>`).join('') : "<li>New answer…</li>") + "</ul>";
-  document.getElementById('counter').innerText = `${idx + 1} / ${filtered.length}`;
+  document.getElementById("a-text").innerHTML =
+    "<ul>" + (bullets.length ? bullets.map(p => "<li>" + p + "</li>").join("") : "<li>New answer…</li>") + "</ul>";
+  document.getElementById("counter").innerText = (idx + 1) + " / " + filtered.length;
 }
 
-// ── NAVIGATION ──
 window.next = function() { saveCurrentCard(); if (idx < filtered.length - 1) { idx++; update(); } };
 window.prev = function() { saveCurrentCard(); if (idx > 0) { idx--; update(); } };
+window.updateSpeaker = function(val) { if (filtered.length > 0) { filtered[idx].speaker = val; scheduleAutosave(); } };
 
-// ── SPEAKER UPDATE ──
-window.updateSpeaker = function(val) {
-  if (filtered.length === 0) return;
-  filtered[idx].speaker = val;
-  scheduleAutosave();
-};
-
-// ── AUTOSAVE ──
 window.scheduleAutosave = function() {
   clearTimeout(autosaveTimer);
-  setSyncStatus('saving', 'Saving…');
+  setSyncStatus("saving", "Saving…");
   autosaveTimer = setTimeout(() => saveCurrentCard(), 1200);
 };
 
 function saveCurrentCard() {
   if (!db || filtered.length === 0) return;
   const c = filtered[idx];
-  // Read edited content
-  c.q = document.getElementById('q-text').innerText.trim();
+  c.q = document.getElementById("q-text").innerText.trim();
   const bullets = [];
-  document.querySelectorAll('#a-text li').forEach(li => bullets.push(li.innerText.trim()));
+  document.querySelectorAll("#a-text li").forEach(li => bullets.push(li.innerText.trim()));
   c.a = bullets;
-  c.speaker = document.getElementById('speakerAssign').value;
-
+  c.speaker = document.getElementById("speakerAssign").value;
   const { id, ...data } = c;
-  setDoc(doc(db, 'cards', id), data)
-    .then(() => {
-      setSyncStatus('live', 'Saved ✓');
-      showSaveMsg('✅ Saved automatically');
-    })
-    .catch(e => {
-      setSyncStatus('error', 'Save failed');
-      showSaveMsg('❌ Save failed: ' + e.message);
-    });
+  setDoc(doc(db, "cards", id), data)
+    .then(() => { setSyncStatus("live", "Saved ✓"); showSaveMsg("✅ Saved"); })
+    .catch(e => { setSyncStatus("error", "Save failed"); showSaveMsg("❌ " + e.message); });
 }
 
 function showSaveMsg(msg) {
-  const el = document.getElementById('save-msg');
-  el.textContent = msg;
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.textContent = '', 2500);
+  const el = document.getElementById("save-msg");
+  el.textContent = msg; clearTimeout(el._t);
+  el._t = setTimeout(() => el.textContent = "", 2500);
 }
 
-// ── ADD CARD (quick) ──
-window.addNewCard = function() { showModal(); };
-window.showModal = function() { document.getElementById('addModal').classList.add('open'); };
-window.hideModal = function() { document.getElementById('addModal').classList.remove('open'); };
+window.showModal = function() { document.getElementById("addModal").classList.add("open"); };
+window.hideModal = function() { document.getElementById("addModal").classList.remove("open"); };
 
 window.submitNewCard = async function() {
-  const q = document.getElementById('newQ').value.trim();
+  const q = document.getElementById("newQ").value.trim();
   if (!q) return alert("Enter a question.");
-  const newCard = {
-    cat: document.getElementById('newCatDropdown').value,
-    speaker: document.getElementById('newSpeaker').value,
-    q,
-    a: ["Draft answer…"],
-    createdAt: Date.now()
-  };
-  await addDoc(collection(db, 'cards'), newCard);
-  document.getElementById('newQ').value = '';
-  hideModal();
-  showSaveMsg('✅ Card added!');
+  await addDoc(collection(db, "cards"), {
+    cat: document.getElementById("newCatDropdown").value,
+    speaker: document.getElementById("newSpeaker").value,
+    q, a: ["Draft answer…"], createdAt: Date.now()
+  });
+  document.getElementById("newQ").value = "";
+  hideModal(); showSaveMsg("✅ Card added!");
 };
 
-// ── CONFIG STORAGE ──
-function saveConfig(cfg) { localStorage.setItem('nanobox_fb_cfg', JSON.stringify(cfg)); }
-function loadConfig() {
-  try { return JSON.parse(localStorage.getItem('nanobox_fb_cfg')); } catch { return null; }
-}
-
+function saveConfig(cfg) { localStorage.setItem("nanobox_fb_cfg", JSON.stringify(cfg)); }
+function loadConfig() { try { return JSON.parse(localStorage.getItem("nanobox_fb_cfg")); } catch { return null; } }
 </script>
 </body>
 </html>
